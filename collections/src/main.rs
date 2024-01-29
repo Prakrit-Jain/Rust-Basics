@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 fn main() {
     // Vectors
     let arr = [1, 2, 3];
@@ -48,4 +50,45 @@ fn main() {
     for i in s.chars() {
         println!("{}", i);
     }
+
+    // Hash-maps
+
+    let blue = String::from("blue");
+    let yellow = String::from("yellow");
+
+    let mut scores: HashMap<String, i32> = HashMap::new();
+
+    scores.insert(blue, 10);
+    scores.insert(yellow, 20);
+
+    // Accessing
+    let key = String::from("blue");
+    let blue_team_score = scores.get(&key); // 10
+
+    match blue_team_score {
+        Some(value) => println!("{}", value),
+        _ => println!("Invalid key")
+    }
+
+    for (key, value) in &scores {
+        println!("key -> {} , value -> {}", key , value);
+    }
+
+    let text = "hello world wonderful world";
+
+    let mut map: HashMap<&str, i32> = HashMap::new();
+
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1; 
+    }
+
+    /* 
+        { 
+            "wonderful": 1,
+            "world": 2,
+            "hello": 1,
+        }
+    */ 
+    println!("{:#?}", map); 
 }
