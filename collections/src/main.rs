@@ -20,4 +20,32 @@ fn main() {
     for item in &v2 {
         println!("{}", item);
     }
+
+    // Strings : They are stored as a collection of UTF-8 encoded bytes
+
+    let s1 = String::new();
+    let s2 = "string slice";
+    let s3 = s2.to_string();
+    let s4 = String::from("string");
+
+    let mut s = String::from("foo");
+    s.push_str("bar");
+    s.push('!');
+
+    // concatenation 
+    let s5 = s4 + &s; // stringfoobar!
+    
+    // or use format macro
+    let s6 = format!("{}{}", s5, s); // stringfoobar!foobar!
+    println!("{}{}", s5, s6);
+
+    // read bytes of string
+    for i in s.bytes() {
+        println!("{}", i);
+    }
+
+    // read chars of string
+    for i in s.chars() {
+        println!("{}", i);
+    }
 }
